@@ -1,9 +1,7 @@
 const PrimaryFooterLeft = [
   { label: "Contact Us", link: "https://singularitynet.io/#contact" },
   { label: "Foundation Site", link: "https://singularitynet.io/" },
-  { label: "SingularityNet Studio", link: "https://singularitynet.io/studio/" },
   { label: "White Paper", link: "https://public.singularitynet.io/whitepaper.pdf" },
-  { label: "Jobs", link: "https://singularitynet.io/jobs-temp/" },
 ];
 
 const PrimaryFooterMain = [
@@ -12,9 +10,6 @@ const PrimaryFooterMain = [
     children: [
       { label: "Free Signup", link: "/signup", internalLink: true },
       { label: "How it Works", link: "/enroll" },
-      /*{ label: "Get Started", link: "#" },
-      { label: "My AI Apps", link: "#" },
-      { label: "Create New AI Servcie", link: "#" },*/
     ],
   },
   {
