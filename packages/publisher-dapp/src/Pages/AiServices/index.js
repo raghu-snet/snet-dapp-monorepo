@@ -10,7 +10,7 @@ import ServiceImage from "shared/dist/assets/images/services.png";
 import CreateNewServicePopup from "./CreateNewServicePopup";
 import ServiceCollection from "./ServiceCollection";
 import { useStyles } from "./styles";
-import { aiServiceListActions } from "../../Services/Redux/actionCreators";
+import { aiServiceListActions, aiServiceDetailsActions } from "../../Services/Redux/actionCreators";
 import ServicePublishedPopup from "./ServicePublishedPopup";
 
 const devPortalUrl = "https://dev.singularitynet.io/docs/ai-developers/";
@@ -21,7 +21,9 @@ class AiServices extends Component {
   };
 
   handleCreateService = () => {
+    const { setCreateNewAiService } = this.props;
     this.setState({ showPopUp: true });
+    setCreateNewAiService(true);
   };
 
   handleClosePopup = () => {
@@ -67,6 +69,8 @@ class AiServices extends Component {
   render() {
     const { classes, recentlyPublishedService, pagination, totalCount } = this.props;
     const { showPopUp } = this.state;
+
+    console.log("@@@@@@@@@", this.props.createNewAIService);
 
     return (
       <Fragment>
@@ -119,6 +123,7 @@ class AiServices extends Component {
 
 const mapStateToProps = state => ({
   orgUuid: state.organization.uuid,
+  createNewAIService: state.aiServiceDetails.createNewAIService,
   pagination: state.aiServiceList.pagination,
   recentlyPublishedService: state.aiServiceList.recentlyPublishedService,
   totalCount: state.aiServiceList.totalCount,
@@ -128,6 +133,8 @@ const mapDispatchToProps = dispatch => ({
   getAiServiceList: (orgUuid, pagination) => dispatch(aiServiceListActions.getAiServiceList(orgUuid, pagination)),
   setRecentlyPublishedService: serviceName => dispatch(aiServiceListActions.setRecentlyPublishedService(serviceName)),
   setAiServiceListPagination: pagination => dispatch(aiServiceListActions.setAiServiceListPagination(pagination)),
+  setCreateNewAiService: createNewAIService =>
+    dispatch(aiServiceDetailsActions.setCreateNewAiService(createNewAIService)),
 });
 
 export default withStyles(useStyles)(connect(mapStateToProps, mapDispatchToProps)(AiServices));

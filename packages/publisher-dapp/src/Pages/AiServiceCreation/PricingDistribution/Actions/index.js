@@ -14,6 +14,7 @@ import { generateDetailedErrorMessageFromValidation } from "../../../../Utils/va
 import { cogsToAgi } from "shared/dist/utils/Pricing";
 import AlertBox, { alertTypes } from "shared/dist/components/AlertBox";
 import { progressStatus, sections } from "../../constant";
+import { setCreateNewAiService } from "../../../../Services/Redux/actionCreators/aiServiceDetailsActions";
 
 const selectState = state => ({
   isValidateServiceIdLoading: state.loader.validateServiceId.isLoading,
@@ -81,6 +82,7 @@ const Actions = ({ serviceDetails, setServiceDetailsInRedux, setInvalidFields })
     history.push(ServiceCreationRoutes.LAUNCH.path.replace(":orgUuid", orgUuid).replace(":serviceUuid", serviceUuid));
   };
   const handleFinishLater = async () => {
+    dispatch(setCreateNewAiService(false));
     await handleSave();
     history.push(GlobalRoutes.SERVICES.path.replace(":orgUuid", orgUuid));
   };
