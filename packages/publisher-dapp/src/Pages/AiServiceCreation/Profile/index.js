@@ -30,6 +30,7 @@ import ServiceIdAvailability from "./ServiceIdAvailability";
 import { serviceIdAvailability, progressStatus, sections } from "../constant";
 import { GlobalRoutes } from "../../../GlobalRouter/Routes";
 import { generateDetailedErrorMessageFromValidation } from "../../../Utils/validation";
+import { setCreateNewAiService } from "../../../Services/Redux/actionCreators/aiServiceDetailsActions";
 
 let validateTimeout = "";
 
@@ -169,6 +170,7 @@ const Profile = ({ classes, serviceDetails, changeServiceDetailsLeaf, changeHero
   const handleResetImage = () => {
     changeHeroImage("");
   };
+
   const handleImageChange = async (data, mimeType, _encoding, filename) => {
     const arrayBuffer = base64ToArrayBuffer(data);
     const fileBlob = new File([arrayBuffer], filename, { type: mimeType });
@@ -179,6 +181,7 @@ const Profile = ({ classes, serviceDetails, changeServiceDetailsLeaf, changeHero
   };
 
   const handleFinishLater = async () => {
+    dispatch(setCreateNewAiService(false));
     try {
       await handleSave();
       history.push(GlobalRoutes.SERVICES.path.replace(":orgUuid", orgUuid));

@@ -51,11 +51,10 @@ class AiServiceCreation extends Component {
   progressStatus = () => {
     let progressStage = {};
     const { progressStages, assets, demoComponentAvailable, groups } = this.props.serviceDetails;
-
+    const { createNewAIService } = this.props;
     const { demoFiles, protoFiles } = assets;
 
     for (const stage of progressStages) {
-
       if (stage.section === sections.SETUP_DEMO && !demoComponentAvailable) {
         progressStage = { ...progressStage, [stage.key]: progressStatus.COMPLETED };
       } else if (stage.section === sections.SETUP_DEMO && demoComponentAvailable && demoFiles.status) {
@@ -89,8 +88,7 @@ class AiServiceCreation extends Component {
         }
 
         if (
-          groups[0].daemonAddresses.length === 0 ||
-          isEmpty(groups[0].endpoints) ||
+          (!createNewAIService && (groups[0].daemonAddresses.length === 0 || isEmpty(groups[0].endpoints))) ||
           (demoComponentAvailable &&
             demoFiles.status === progressStatus.FAILED &&
             protoFiles.status === progressStatus.FAILED)
@@ -101,12 +99,12 @@ class AiServiceCreation extends Component {
 
       if (
         stage.section === sections.PRICING_AND_DISTRIBUTION &&
-        (groups[0].daemonAddresses.length === 0 || isEmpty(groups[0].endpoints))
+        (groups[0].daemonAddresses.length === 0 || isEmpty(groups[0].endpoints)) &&
+        !createNewAIService
       ) {
         progressStage = { ...progressStage, [stage.key]: progressStatus.FAILED };
       }
     }
-
     return progressStage;
   };
 
@@ -162,7 +160,8 @@ class AiServiceCreation extends Component {
   };
 
   handleBackToDashboard = () => {
-    const { orgUuid, history } = this.props;
+    const { orgUuid, history, setCreateNewAiService } = this.props;
+    setCreateNewAiService(true);
     history.push(GlobalRoutes.SERVICES.path.replace(":orgUuid", orgUuid));
   };
 
@@ -300,6 +299,7 @@ class AiServiceCreation extends Component {
 }
 
 const mapStateToProps = state => ({
+  createNewAIService: state.aiServiceDetails.createNewAIService,
   organization: state.organization,
   orgId: state.organization.id,
   orgUuid: state.organization.uuid,
@@ -334,5 +334,7 @@ const mapDispatchToProps = dispatch => ({
   setAiServiceStateState: updatedState => dispatch(aiServiceDetailsActions.setAiServiceStateState(updatedState)),
   setAiServiceDetailLeaf: (name, value) => dispatch(aiServiceDetailsActions.setAiServiceDetailLeaf(name, value)),
   launchAiService: (orgUuid, serviceUuid) => dispatch(aiServiceDetailsActions.launchAiService(orgUuid, serviceUuid)),
+  setCreateNewAiService: createNewAIService =>
+    dispatch(aiServiceDetailsActions.setCreateNewAiService(createNewAIService)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(AiServiceCreation));

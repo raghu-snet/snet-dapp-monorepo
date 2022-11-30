@@ -7,6 +7,7 @@ import { ServiceCreationRoutes } from "../ServiceCreationRouter/Routes";
 import { aiServiceDetailsActions } from "../../../Services/Redux/actionCreators";
 import { GlobalRoutes } from "../../../GlobalRouter/Routes";
 import { sections, progressStatus } from "../constant";
+import { setCreateNewAiService } from "../../../Services/Redux/actionCreators/aiServiceDetailsActions";
 
 const selectState = state => ({
   serviceStatus: state.aiServiceDetails.progressStages,
@@ -51,6 +52,7 @@ const Actions = ({
   };
 
   const handleFinishLater = async () => {
+    dispatch(setCreateNewAiService(false));
     await handleSave();
     history.push(GlobalRoutes.SERVICES.path.replace(":orgUuid", orgUuid));
   };

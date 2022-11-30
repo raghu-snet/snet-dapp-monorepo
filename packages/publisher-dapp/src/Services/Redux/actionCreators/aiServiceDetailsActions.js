@@ -36,10 +36,16 @@ export const SET_SERVICE_DEMO_FILES_URL = "SET_SERVICE_DEMO_FILES_URL";
 export const SET_SERVICE_DETAILS_FOUND_IN_BLOCKCHAIN = "SET_SERVICE_DETAILS_FOUND_IN_BLOCKCHAIN";
 export const SET_PROGRESS_STATUS = "SET_PROGRESS_STATUS";
 export const SET_BUILD_STATUS = "SET_BUILD_STATUS";
+export const SET_CREATE_NEW_AI_SERVICE = "SET_CREATE_NEW_AI_SERVICE";
 export const SET_DEMO_COMPONENT_AVAILABLE = "SET_DEMO_COMPONENT_AVAILABLE";
 export const SET_SAVED_PRICING_DETAILS = "SET_SAVED_PRICING_DETAILS";
 
 export const setAllAttributes = value => ({ type: SET_ALL_SERVICE_DETAILS_ATTRIBUTES, payload: value });
+
+export const setCreateNewAiService = createNewAIService => ({
+  type: SET_CREATE_NEW_AI_SERVICE,
+  payload: createNewAIService,
+});
 
 export const setDemoComponentAvialble = demoComponentAvailable => ({
   type: SET_DEMO_COMPONENT_AVAILABLE,
