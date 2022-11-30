@@ -69,9 +69,6 @@ class AiServices extends Component {
   render() {
     const { classes, recentlyPublishedService, pagination, totalCount } = this.props;
     const { showPopUp } = this.state;
-
-    console.log("@@@@@@@@@", this.props.createNewAIService);
-
     return (
       <Fragment>
         <div className={classes.AiServicesMainContainer}>
