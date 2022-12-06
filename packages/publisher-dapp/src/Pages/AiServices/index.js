@@ -54,6 +54,7 @@ class AiServices extends Component {
     if (userClickedPagination.offset === 0 && userClickedPagination.limit) {
       newPagination = {
         ...pagination,
+        q: userClickedPagination.q,
         limit: userClickedPagination.limit,
         offset: userClickedPagination.offset,
       };
@@ -108,6 +109,8 @@ class AiServices extends Component {
               pagination={pagination}
               totalCount={totalCount}
               handlePageChangePublisher={this.handlePageChangePublisher}
+              currentPagination={pagination}
+              handleSearchChange={this.handlePageChangePublisher}
             />
           </Grid>
           <CreateNewServicePopup open={showPopUp} handleClose={this.handleClosePopup} />

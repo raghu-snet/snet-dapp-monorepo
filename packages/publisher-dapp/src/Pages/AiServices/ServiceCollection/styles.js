@@ -1,5 +1,8 @@
 export const useStyles = () => ({
-  serviceCollection: { marginTop: 33 },
+  serviceCollection: {
+    width: "100%",
+    marginTop: 33,
+  },
   searchBar: {
     width: "100%",
     padding: "0 0 5px",

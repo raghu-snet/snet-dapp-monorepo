@@ -22,7 +22,7 @@ export const useStyles = makeStyles(MUITheme => ({
     height: 48,
   },
   loaderText: {
-    color: MUITheme.palette.text.lightShadedGray,
+    color: MUITheme.palette.text.lightGrey,
     fontSize: 14,
     fontWeight: 600,
     letterSpacing: 0.25,
@@ -34,7 +34,7 @@ export const useStyles = makeStyles(MUITheme => ({
     justifyContent: "center",
     flexDirection: "column",
     "& span": {
-      color: MUITheme.palette.text.lightShadedGray,
+      color: MUITheme.palette.text.lightGrey,
       fontSize: 16,
       lineHeight: "20px",
     },

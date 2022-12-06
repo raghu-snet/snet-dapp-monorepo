@@ -5,7 +5,16 @@ import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import { useStyles } from "./styles";
 
-const SearchInputToggler = ({ showSearchInput, toggleSearchInput, handleSearch, searchKeyword }) => {
+const SearchInputToggler = ({
+  showSearchInput,
+  toggleSearchInput,
+  handleSearch,
+  searchKeyword,
+  handleClearSearch,
+  handleSearchChange,
+  currentPagination,
+  pagination,
+}) => {
   const classes = useStyles();
 
   const handleBlur = () => {
@@ -16,7 +25,13 @@ const SearchInputToggler = ({ showSearchInput, toggleSearchInput, handleSearch, 
   };
 
   const handleCloseSearch = () => {
-    console.log("Search cleared");
+    toggleSearchInput(false);
+    const pagination = {
+      offset: 0,
+      q: "",
+    };
+    handleSearchChange({ ...currentPagination, ...pagination });
+    handleClearSearch();
   };
 
   if (showSearchInput) {
