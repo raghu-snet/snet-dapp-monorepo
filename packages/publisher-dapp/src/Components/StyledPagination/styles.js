@@ -11,6 +11,13 @@ export const useStyles = makeStyles(theme => ({
   pageListformControlPublisher: {
     width: 72,
     margin: "0 12px 0 15px",
+    "& > div": {
+      "& > div": {
+        padding: "4px 11px",
+        color: theme.palette.primary.main,
+        fontSize: 16,
+      },
+    },
     "& div": {
       "& div": { padding: "8px 13px" },
     },
@@ -20,7 +27,7 @@ export const useStyles = makeStyles(theme => ({
       "& + div": {
         "& div": {
           padding: "8.5px 13px",
-          color: theme.palette.text.darkShadedGray,
+          color: theme.palette.text.darkGrey,
         },
       },
       "& legend": { display: "none" },
@@ -31,7 +38,7 @@ export const useStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "flex-end",
     "& span": {
-      color: theme.palette.text.lightShadedGray,
+      color: theme.palette.text.lightGrey,
       fontSize: 14,
     },
     "@media(max-width: 768px)": { marginBottom: 15 },

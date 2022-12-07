@@ -5,12 +5,29 @@ import CardGroup from "./CardGroup";
 import SearchInputToggler from "./SearcjInputToggler";
 import { useStyles } from "./styles";
 
-const ServiceCollection = ({ classes, pagination, totalCount, handlePageChangePublisher }) => {
+const ServiceCollection = ({
+  classes,
+  pagination,
+  totalCount,
+  handlePageChangePublisher,
+  handleSearchChange,
+  currentPagination,
+}) => {
   const [showSearchInput, toggleSearchInput] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState("");
+  // const [clearSearch, setClearSearch] = useState(false);
 
   const handleSearch = event => {
     setSearchKeyword(event.currentTarget.value);
+    const pagination = {
+      offset: 0,
+      q: event.target.value,
+    };
+    handleSearchChange({ ...currentPagination, ...pagination });
+  };
+
+  const handleClearSearch = () => {
+    setSearchKeyword("");
   };
 
   return (
@@ -22,6 +39,10 @@ const ServiceCollection = ({ classes, pagination, totalCount, handlePageChangePu
           toggleSearchInput={toggleSearchInput}
           handleSearch={handleSearch}
           searchKeyword={searchKeyword}
+          handleClearSearch={handleClearSearch}
+          handleSearchChange={handleSearchChange}
+          currentPagination={currentPagination}
+          pagination={pagination}
         />
       </button>
       <CardGroup />

@@ -70,7 +70,7 @@ export const useStyles = MUITheme => ({
       marginRight: 40,
       fontSize: 20,
       textTransform: "none",
-      color: MUITheme.palette.text.lightShadedGray,
+      color: MUITheme.palette.text.lightGrey,
       fontFamily: MUITheme.typography.primary,
       "@media(max-width: 1090px)": {
         marginRight: 30,
